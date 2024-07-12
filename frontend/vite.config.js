@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api/v1': {
-          target: 'http://localhost:3000',
+          target: 'https://pasiar-travel-logs-api.vercel.app',
           changeOrigin: true
         },
       },
