@@ -1,6 +1,6 @@
 import { Container, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
-import { validateInput, validatePassword, validateEmail } from "./../Components/validators/validators";
+import { validateInput, validatePassword, validateEmail } from "./../Components/validators/Validators";
 
 export const validateField = (input: string, field: {name:string}, setError) =>{
 	if (validateInput(input)) {

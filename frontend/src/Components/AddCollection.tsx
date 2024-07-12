@@ -5,7 +5,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import axios from "axios";
 import MyContext from "../../MyContext";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { validateInput, validatePassword } from "./../Components/validators/validators";
+import { validateInput, validatePassword } from "./validators/Validators";
 import CloseIcon from '@mui/icons-material/Close';
 
 const VisuallyHiddenInput = styled('input')({

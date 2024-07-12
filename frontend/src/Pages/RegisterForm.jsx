@@ -1,6 +1,5 @@
 import { Container, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
-import { validateInput, validatePassword, validateEmail } from "./../Components/validators/validators";
 import { validateField } from "./../Pages/Login";
 
 const RegisterForm = ({ field, onChange, errorMessage, setError, userData }) => {
