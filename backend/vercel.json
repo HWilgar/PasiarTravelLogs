@@ -17,8 +17,7 @@
             "DELETE",
             "OPTIONS"
         ],
-        "headers": ["Content-Type", "Authorization"],
-        "allow": ["https://pasiar-travel-logs.vercel.app"]
+        "headers": ["Content-Type", "Authorization"]
       }
   ]
 }
