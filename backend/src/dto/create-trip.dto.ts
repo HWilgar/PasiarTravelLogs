@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Image } from 'src/trips/trip.schema';
+import { Image } from './trips/trip.schema';
 
 export class CreateTripDto {
   @IsString()

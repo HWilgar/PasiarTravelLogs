@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Trip } from './trip.schema';
-import { CreateTripDto } from 'src/dto/create-trip.dto';
-import { UpdateTripDto } from 'src/dto/update-trip.dto';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CreateTripDto } from './dto/create-trip.dto';
+import { UpdateTripDto } from './dto/update-trip.dto';
+import { CloudinaryService } from './cloudinary/cloudinary.service';
 
 @Injectable()
 export class TripsService {
