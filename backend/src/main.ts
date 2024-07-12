@@ -5,15 +5,10 @@ import helmet from 'helmet';
 
 async function bootstrap() {
   dotenv.config();
-  const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: 'https://pasiar-travel-logs.vercel.app/',
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    },
-  });
+  const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v1');
+  app.enableCors();
   app.use(helmet());
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
