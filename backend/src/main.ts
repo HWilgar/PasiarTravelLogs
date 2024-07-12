@@ -11,7 +11,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: ['https://pasiar-travel-logs.vercel.app'],
-    allowedHeaders: ['Accept', 'Content-Type'],
+    allowedHeaders: ['Accept', 'Content-Type', 'Authorization'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     preflightContinue: false,
     optionsSuccessStatus: 204,
