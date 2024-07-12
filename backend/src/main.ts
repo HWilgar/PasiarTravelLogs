@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://pasiar-travel-logs.vercel.app/'],
+    origin: ['https://pasiar-travel-logs.vercel.app'],
     allowedHeaders: ['Accept', 'Content-Type'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     preflightContinue: false,
