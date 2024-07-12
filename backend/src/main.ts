@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin:
-        'https://pasiar-travel-logs-nkbeno9qg-hwilgars-projects.vercel.app',
+        'https://pasiar-travel-logs-fg37djn2g-hwilgars-projects.vercel.app',
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization'],
     },
