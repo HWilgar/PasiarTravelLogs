@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Stack, TextField, Typography, autocompleteClasses } from '@mui/material';
 import useLogin from "./hooks/useLogin";
 import Register from './Pages/Register';
-import { validateInput } from "./Components/validators/validators";
+import { validateInput } from './../src/Components/validators/Validators';
 import Login, { validateField } from './Pages/Login';
 import { UserData } from './propTypes/propTypes';
 
