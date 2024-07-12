@@ -3,9 +3,9 @@ import { TripsController } from './trips.controller';
 import { TripsService } from './trips.service';
 import { Trip, TripSchema } from './trip.schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CloudinaryService } from './cloudinary/cloudinary.service';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import { MulterModule } from '@nestjs/platform-express';
 

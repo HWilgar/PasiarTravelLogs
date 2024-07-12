@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Destination } from './destination.schema';
 import { Model } from 'mongoose';
-import { CreateDestinationDto } from './dto/create-destination.dto';
-import { UpdateDestinationDto } from './dto/update-destination.dto';
+import { CreateDestinationDto } from 'src/dto/create-destination.dto';
+import { UpdateDestinationDto } from 'src/dto/update-destination.dto';
 
 @Injectable()
 export class DestinationsService {

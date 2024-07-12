@@ -13,11 +13,11 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
-import { HttpExceptionFilter } from './exception-filter/http-exception.filter';
+import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter';
 import { DestinationsService } from './destinations.service';
 import { Response } from 'express';
-import { CreateDestinationDto } from './dto/create-destination.dto';
-import { UpdateDestinationDto } from './dto/update-destination.dto';
+import { CreateDestinationDto } from 'src/dto/create-destination.dto';
+import { UpdateDestinationDto } from 'src/dto/update-destination.dto';
 
 @Controller('trips/:tripId/destinations')
 @UseFilters(HttpExceptionFilter)

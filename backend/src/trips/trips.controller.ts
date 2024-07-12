@@ -18,14 +18,14 @@ import {
   UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
-import { HttpExceptionFilter } from './exception-filter/http-exception.filter';
+import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter';
 import { TripsService } from './trips.service';
 import { Response } from 'express';
-import { CreateTripDto } from './dto/create-trip.dto';
-import { UpdateTripDto } from './dto/update-trip.dto';
+import { CreateTripDto } from 'src/dto/create-trip.dto';
+import { UpdateTripDto } from 'src/dto/update-trip.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Public } from './auth/decorator/public.decorator';
-import { CloudinaryService } from './cloudinary/cloudinary.service';
+import { Public } from 'src/auth/decorator/public.decorator';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Controller('trips')
 @UseFilters(HttpExceptionFilter)

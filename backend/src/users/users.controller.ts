@@ -15,10 +15,10 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Response } from 'express';
-import { HttpExceptionFilter } from './exception-filter/http-exception.filter';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { Public } from './auth/decorator/public.decorator';
+import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter';
+import { CreateUserDto } from 'src/dto/create-user.dto';
+import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { Public } from 'src/auth/decorator/public.decorator';
 
 @Controller('users')
 @UseFilters(HttpExceptionFilter)
