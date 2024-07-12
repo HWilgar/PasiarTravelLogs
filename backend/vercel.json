@@ -16,8 +16,7 @@
             "PUT",
             "DELETE",
             "OPTIONS"
-        ],
-        "headers": ["Content-Type", "Authorization"]
+        ]
       }
   ]
 }
