@@ -3,19 +3,15 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import helmet from 'helmet';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { CorsMiddleware } from './middleware/CorsMiddleware';
 
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Enable CORS with specific origin, methods, and headers
-  app.enableCors({
-    origin: 'https://pasiar-travel-logs.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  });
+  app.use(new CorsMiddleware().use);
 
-  app.use(helmet()); // Helmet middleware for security headers
+  app.use(helmet());
   app.setGlobalPrefix('api/v1');
   await app.listen(process.env.PORT || 3000);
 }
