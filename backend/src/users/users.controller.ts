@@ -15,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Response } from 'express';
-import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter';
+import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter.ts';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { UpdateUserDto } from 'src/dto/update-user.dto';
 import { Public } from 'src/auth/decorator/public.decorator';
