@@ -1,0 +1,42 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color-scheme: light dark;
+  background-image: linear-gradient(to bottom, rgba(179, 199, 196, 0.52), rgba(200, 147, 109, 0.73)),
+  url('https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');backgroundSize: cover;
+  background-size: cover;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: auto;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
+}
+
+.pac-container {
+  z-index: 1400 !important;
+}
+
+.pac-target-input {
+  font-size: 0.9rem;
+  padding: 5px;
+  width: 260px !important;
+}
+
+.autocomplete-container{
+  margin-top: 10px;
+}
+
+/* div:has(.autocomplete-container){
+  width: 85%;
+} */
