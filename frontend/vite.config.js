@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api/v1': {
-          target: 'https://pasiar-travel-logs-api.vercel.app',
+          target: 'https://pasiartravellogs-api.onrender.com',
           changeOrigin: true
         },
       },
