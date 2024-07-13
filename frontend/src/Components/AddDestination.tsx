@@ -32,7 +32,7 @@ const AddDestination = ({ handleClose, fetchTrips }: AddDesProps) => {
 
   useEffect(() => {
     if(process.env.API_KEY){
-      setAPI_KEY(atob(process.env.API_KEY));
+      setAPI_KEY(process.env.API_KEY);
     }
  }, []);
 
