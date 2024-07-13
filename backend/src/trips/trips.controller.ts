@@ -150,6 +150,17 @@ export class TripsController {
           );
           response.status(201).json(updatedTrip);
         }
+      } else {
+        const result = await this.cloudinaryService.uploadImage(file.path);
+        const filename = result.public_id.split('/')[1];
+        const path = result.url;
+
+        const updatedTrip = await this.tripsService.updateTripImage(
+          id,
+          filename,
+          path,
+        );
+        response.status(201).json(updatedTrip);
       }
     } catch (error) {
       throw new HttpException('Trip does not exist.', HttpStatus.NOT_FOUND);
