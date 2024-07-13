@@ -22,14 +22,14 @@ const DestinationActivity = ({ destination }:{ destination: Destination } ) => {
 
     setActivityList(updatedActivity);
     ( async () => {
-      await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destination._id}`,{activities: updatedActivity}, { headers: { Authorization: `Bearer ${user}`}});
+      await axios.patch(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${destination._id}`,{activities: updatedActivity}, { headers: { Authorization: `Bearer ${user}`}});
     })();
   }
 
   useEffect(()=> {
     if(activityList.length){
       (async () => {
-        await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destination._id}`,{activities: activityList}, { headers:{ Authorization: `Bearer ${user}`}});
+        await axios.patch(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${destination._id}`,{activities: activityList}, { headers:{ Authorization: `Bearer ${user}`}});
       })();
     }
   }, [activityList]);
