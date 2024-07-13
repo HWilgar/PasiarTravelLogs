@@ -17,6 +17,8 @@ import { format } from "date-fns";
 import { convertFieldResponseIntoMuiTextFieldProps } from "@mui/x-date-pickers/internals";
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const containerStyle = {
   width: '400px',
   height: '400px'
@@ -46,7 +48,6 @@ const Trip = () => {
   const [ destinations, setDestinations ] = useState([]);
   const [ selectedDestination, setSelectedDestination ] = useState({});
   const { tripId } = useParams();
-  const [API_KEY, setAPI_KEY] = useState("");
 
   const [openAddDesModal, setOpenAddDesModal] = useState(false);
   const handleOpenAddDesModal = () => setOpenAddDesModal(true);
@@ -107,12 +108,6 @@ const Trip = () => {
 
     fetchDestinations();
   }
-
-  useEffect(() => {
-    if(process.env.API_KEY){
-      setAPI_KEY(process.env.API_KEY);
-    }
-  }, []);
 
   return (
     <Container>

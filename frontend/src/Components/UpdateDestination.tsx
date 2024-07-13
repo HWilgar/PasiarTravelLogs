@@ -13,8 +13,7 @@ type UpdateDesProps = {
   desId: string;
 }
 
-const API_KEY =
-  "AIzaSyBfs0p8i4iuHnGdYgX9YaV8tM_6Zg2-Nc8";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
   const { user, trip } = useContext(MyContext);
@@ -24,7 +23,6 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
   const [ error, setError ]  = useState("");
   const [ isFormValid, setIsFormValid ] = useState(true);
   const [ success, setSuccess ] = useState("");
-  const [API_KEY, setAPI_KEY] = useState("");
 
   const handleSelectPlace = (event: MapMouseEvent) => {
     const lat = event?.detail?.latLng?.lat;
@@ -37,12 +35,6 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
     const lng = e.latLng.lng();
     setMarkerPosition([lat, lng]);
   }
-
-  useEffect(() => {
-    if(process.env.API_KEY){
-      setAPI_KEY(process.env.API_KEY);
-    }
-  }, []);
 
   useEffect(() => {
     (async () => {

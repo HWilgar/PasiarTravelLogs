@@ -8,6 +8,8 @@ import axios from 'axios';
 import { validateField } from './AddCollection';
 import CloseIcon from '@mui/icons-material/Close';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 type AddDesProps = {
   handleClose: (v: boolean) => void;
   fetchTrips: () => void;
@@ -22,19 +24,12 @@ const AddDestination = ({ handleClose, fetchTrips }: AddDesProps) => {
   const [ error, setError ]  = useState("");
   const [ isFormValid, setIsFormValid ] = useState(true);
   const [ success, setSuccess ] = useState("");
-  const [API_KEY, setAPI_KEY] = useState("");
 
   const handleSelectPlace = (event: MapMouseEvent) => {
     const lat = event?.detail?.latLng?.lat;
     const lng = event?.detail?.latLng?.lng;
     if(lat && lng) setMarkerPosition([lat, lng]);
   }
-
-  useEffect(() => {
-    if(process.env.API_KEY){
-      setAPI_KEY(process.env.API_KEY);
-    }
- }, []);
 
   useEffect(()=> {
     const lat = selectedPlace?.geometry?.location?.lat();
