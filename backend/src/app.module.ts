@@ -15,8 +15,15 @@ dotenv.config();
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      process.env.MONGODB_URI ||
-        'mongodb+srv://njwilgar:d1nHUvodC7hUcBSn@cluster0.sfbgjxo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/map',
+      process.env.MONGO_URI ||
+        'mongodb+srv://hwgcarino:mmtyyCvypus1wqyd@cluster0.rmcbljq.mongodb.net/map',
+      {
+        connectionFactory: (connection) => {
+          connection.set('useNewUrlParser', true);
+          connection.set('useUnifiedTopology', true);
+          return connection;
+        },
+      },
     ),
     UsersModule,
     AuthModule,
