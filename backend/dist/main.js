@@ -8,7 +8,7 @@ async function bootstrap() {
     dotenv.config();
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const corsOptions = {
-        origin: 'https://pasiar-travel-planner.vercel.app',
+        origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
         allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
