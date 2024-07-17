@@ -10,7 +10,7 @@ const useLogin = () => {
 
   const handleLogin = async (userCredentials) => {
     try {
-      const data = await axios.post("https://pasiartravellogs-api.onrender.com/api/v1/auth/login", {
+      const data = await axios.post("https://pasiar-travel-logs-api.vercel.app/api/v1/auth/login", {
         email: userCredentials.email,
         password: userCredentials.password,
       });
