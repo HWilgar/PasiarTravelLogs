@@ -12,6 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateTripDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateTripDto {
+    name;
+    date;
+    image;
+    UserId;
+    is_deleted;
+    deleted_at;
 }
 exports.CreateTripDto = CreateTripDto;
 __decorate([

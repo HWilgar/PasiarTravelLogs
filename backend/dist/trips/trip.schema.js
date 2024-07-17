@@ -14,6 +14,12 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const user_schema_1 = require("../users/user.schema");
 let Trip = class Trip {
+    userId;
+    name;
+    date;
+    image;
+    is_deleted;
+    deleted_at;
 };
 exports.Trip = Trip;
 __decorate([

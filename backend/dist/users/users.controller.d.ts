@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { UsersService } from './users.service';
 import { Response } from 'express';
 import { CreateUserDto } from 'src/dto/create-user.dto';

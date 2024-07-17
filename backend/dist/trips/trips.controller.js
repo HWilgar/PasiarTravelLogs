@@ -22,6 +22,8 @@ const platform_express_1 = require("@nestjs/platform-express");
 const public_decorator_1 = require("../auth/decorator/public.decorator");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 let TripsController = class TripsController {
+    tripsService;
+    cloudinaryService;
     constructor(tripsService, cloudinaryService) {
         this.tripsService = tripsService;
         this.cloudinaryService = cloudinaryService;
