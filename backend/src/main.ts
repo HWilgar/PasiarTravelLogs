@@ -7,7 +7,12 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.enableCors();
+  // app.enableCors();
+  app.enableCors({
+    origin: 'https://pasiar-travel-planner.vercel.app/',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   // app.use(helmet());
   app.setGlobalPrefix('api/v1');
   await app.listen(process.env.PORT || 3000);
