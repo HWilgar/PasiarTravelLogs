@@ -10,6 +10,7 @@ async function bootstrap() {
         origin: 'https://pasiar-travel-planner.vercel.app',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
+        allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
     });
     app.setGlobalPrefix('api/v1');
     await app.listen(process.env.PORT || 3000);
