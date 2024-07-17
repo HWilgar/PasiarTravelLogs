@@ -58,7 +58,7 @@ const AddDestination = ({ handleClose, fetchTrips }: AddDesProps) => {
     }
 
     const newDestination = await axios.post(
-      `https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations`,
+      `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations`,
       {name: desNameField, location: markerPosition, visited: false},
       { headers: { Authorization: `Bearer ${user}` } });
   

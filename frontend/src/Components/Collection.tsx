@@ -52,7 +52,7 @@ const Collection = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get("https://pasiartravellogs-api.onrender.com/api/v1/trips", { headers: { Authorization: `Bearer ${user}` } });
+      const data = await axios.get("https://pasiar-travel-logs-api.vercel.app/api/v1/trips", { headers: { Authorization: `Bearer ${user}` } });
       
       if (trips !== data.data){
         setTrips(data.data);
@@ -62,7 +62,7 @@ const Collection = () => {
 
   const handleConfirmDel = () => {
     (async () => {
-      await axios.put(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${selectedTrip._id}/del`, { headers: { Authorization: `Bearer ${user}` } });
+      await axios.put(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${selectedTrip._id}/del`, { headers: { Authorization: `Bearer ${user}` } });
       const filtertrip = trips.filter((trip) => trip._id !== selectedTrip._id);
       setTrips(filtertrip);
       handleDelClose();
@@ -78,7 +78,7 @@ const Collection = () => {
       data.append("image", file);
 
       await axios.patch(
-        `https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/upload`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/upload`,
         data,
         { headers: { Authorization: `Bearer ${user}` } });
     }

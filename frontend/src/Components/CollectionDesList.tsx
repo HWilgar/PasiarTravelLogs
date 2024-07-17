@@ -11,7 +11,7 @@ const CollectionDesList = ({ tripId }: { tripId: string }) => {
 
   useEffect(() => {
     (async () => {
-      const desList = await axios.get(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${tripId}/destinations`, {headers: { Authorization: `Bearer ${user}`}});
+      const desList = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${tripId}/destinations`, {headers: { Authorization: `Bearer ${user}`}});
       
       setDestinationList(desList.data);
       const visitedDes = desList.data.filter((destination) => destination.visited);

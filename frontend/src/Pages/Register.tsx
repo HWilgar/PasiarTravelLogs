@@ -53,7 +53,7 @@ const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
   }
 
   try {
-    const registered = await axios.post("https://pasiartravellogs-api.onrender.com/api/v1/users", {name: userData.username, email: userData.email, password: userData.password});
+    const registered = await axios.post("https://pasiar-travel-logs-api.vercel.app/api/v1/users", {name: userData.username, email: userData.email, password: userData.password});
 
     if(registered){
       login(userData);

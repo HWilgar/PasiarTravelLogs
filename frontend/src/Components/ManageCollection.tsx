@@ -30,7 +30,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   
   useEffect(()=> {
     (async () => {
-      const  desList = await axios.get(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations`, { headers: {Authorization: `Bearer ${user}`}});
+      const  desList = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations`, { headers: {Authorization: `Bearer ${user}`}});
 
       setDestinations(desList.data);
       setUpdatedDesList(desList.data);
@@ -62,14 +62,14 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   }
 
   const UpdatedTrip = await axios.patch(
-    `https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}`,
+    `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
     {name: tripName, date: tripSched},
     { headers: { Authorization: `Bearer ${user}` } });
 
     if (updatedDesList !== destinations){
       try {
         for ( const destination of updatedDesList) {
-          const updateDesInfo = await axios.patch(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user}`}});
+          const updateDesInfo = await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user}`}});
         }
       } catch (error) {
         console.error('Error updating.', error);
@@ -79,7 +79,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
     if (destIdToDelete){
       try {
         for (const destinationId of destIdToDelete) {
-          const updateDesList = await axios.delete(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user}`}});
+          const updateDesList = await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user}`}});
         }
       } catch (error) {
         console.error('Error deleting destinations:', error);

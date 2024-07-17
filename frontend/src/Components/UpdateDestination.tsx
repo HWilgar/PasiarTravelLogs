@@ -38,7 +38,7 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(`https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${desId}`, { headers: { Authorization: `Bearer ${user}` } });
+      const data = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${desId}`, { headers: { Authorization: `Bearer ${user}` } });
       setDesNameField(data.data.name);
       setMarkerPosition([data.data.location[0], data.data.location[1]]);
     })();
@@ -69,7 +69,7 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
       }
 
     const newDestination = await axios.patch(
-      `https://pasiartravellogs-api.onrender.com/api/v1/trips/${trip._id}/destinations/${desId}`,
+      `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${desId}`,
       {name: desNameField, location: markerPosition},
       { headers: { Authorization: `Bearer ${user}` } 
     });
