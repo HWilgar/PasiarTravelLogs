@@ -9,7 +9,7 @@ async function bootstrap() {
     const corsOptions = {
         origin: 'https://pasiar-travel-planner.vercel.app',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        credentials: true,
+        credentials: false,
         allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
     };
     app.enableCors(corsOptions);

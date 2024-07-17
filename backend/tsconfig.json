@@ -19,7 +19,6 @@
     "noFallthroughCasesInSwitch": true,
     "target": "esnext",
     "module": "CommonJS",
-    "lib": ["esnext"],
-    "moduleResolution": "node",
+    "lib": ["esnext"]
   }
 }
