@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // app.enableCors();
   app.enableCors({
-    origin: 'https://pasiar-travel-planner.vercel.app/',
+    origin: 'https://pasiar-travel-planner.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
