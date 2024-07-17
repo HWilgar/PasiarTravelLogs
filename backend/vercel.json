@@ -2,17 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/main.js",
+      "src": "dist/main.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/main.js",
+      "dest": "dist/main.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
       "headers": { 
-        "Access-Control-Allow-Origin": "*" 
+        "Access-Control-Allow-Origin": "http://localhost:3000" 
       }   
     }
   ]
