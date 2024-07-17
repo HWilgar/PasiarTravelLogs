@@ -3,10 +3,15 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import helmet from 'helmet';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import * as express from 'express';
 
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
   const corsOptions = {
     origin: 'https://pasiar-travel-planner.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
