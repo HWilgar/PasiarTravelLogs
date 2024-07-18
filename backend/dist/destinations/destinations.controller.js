@@ -19,7 +19,6 @@ const destinations_service_1 = require("./destinations.service");
 const create_destination_dto_1 = require("../dto/create-destination.dto");
 const update_destination_dto_1 = require("../dto/update-destination.dto");
 let DestinationsController = class DestinationsController {
-    destinationsService;
     constructor(destinationsService) {
         this.destinationsService = destinationsService;
     }

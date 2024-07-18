@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { DestinationsService } from './destinations.service';
 import { Response } from 'express';
 import { CreateDestinationDto } from 'src/dto/create-destination.dto';

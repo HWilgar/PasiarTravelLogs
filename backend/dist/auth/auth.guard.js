@@ -16,8 +16,6 @@ const constants_1 = require("./constants");
 const core_1 = require("@nestjs/core");
 const public_decorator_1 = require("./decorator/public.decorator");
 let AuthGuard = class AuthGuard {
-    jwtService;
-    reflector;
     constructor(jwtService, reflector) {
         this.jwtService = jwtService;
         this.reflector = reflector;

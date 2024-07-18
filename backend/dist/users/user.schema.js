@@ -12,10 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let User = class User {
-    _id;
-    name;
-    email;
-    password;
 };
 exports.User = User;
 __decorate([

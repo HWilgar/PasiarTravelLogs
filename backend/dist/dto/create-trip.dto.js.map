@@ -1,1 +1,1 @@
-{"version":3,"file":"create-trip.dto.js","sourceRoot":"","sources":["../../src/dto/create-trip.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAuD;AAGvD,MAAa,aAAa;IAGxB,IAAI,CAAS;IAEb,IAAI,CAAS;IAEb,KAAK,CAAQ;IAEb,MAAM,CAAS;IAEf,UAAU,CAAU;IAEpB,UAAU,CAAS;CACpB;AAdD,sCAcC;AAXC;IAFC,IAAA,0BAAQ,GAAE;IACV,IAAA,4BAAU,GAAE;;2CACA"}
+{"version":3,"file":"create-trip.dto.js","sourceRoot":"","sources":["../../src/dto/create-trip.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAuD;AAGvD,MAAa,aAAa;CAczB;AAdD,sCAcC;AAXC;IAFC,IAAA,0BAAQ,GAAE;IACV,IAAA,4BAAU,GAAE;;2CACA"}

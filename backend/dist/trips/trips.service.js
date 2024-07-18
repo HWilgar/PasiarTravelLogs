@@ -19,8 +19,6 @@ const mongoose_2 = require("mongoose");
 const trip_schema_1 = require("./trip.schema");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 let TripsService = class TripsService {
-    tripModel;
-    cloudinary;
     constructor(tripModel, cloudinary) {
         this.tripModel = tripModel;
         this.cloudinary = cloudinary;

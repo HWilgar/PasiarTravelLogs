@@ -12,11 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DestinationSchema = exports.Destination = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let Destination = class Destination {
-    name;
-    location;
-    visited;
-    activities;
-    tripId;
 };
 exports.Destination = Destination;
 __decorate([

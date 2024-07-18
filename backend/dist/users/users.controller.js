@@ -20,7 +20,6 @@ const create_user_dto_1 = require("../dto/create-user.dto");
 const update_user_dto_1 = require("../dto/update-user.dto");
 const public_decorator_1 = require("../auth/decorator/public.decorator");
 let UsersController = class UsersController {
-    usersService;
     constructor(usersService) {
         this.usersService = usersService;
     }

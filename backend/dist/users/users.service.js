@@ -19,7 +19,6 @@ const mongoose_2 = require("mongoose");
 const user_schema_1 = require("./user.schema");
 const bcrypt = require("bcrypt");
 let UsersService = class UsersService {
-    userModel;
     constructor(userModel) {
         this.userModel = userModel;
     }

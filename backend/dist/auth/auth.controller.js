@@ -19,7 +19,6 @@ const auth_service_1 = require("./auth.service");
 const create_user_dto_1 = require("../dto/create-user.dto");
 const public_decorator_1 = require("./decorator/public.decorator");
 let AuthController = class AuthController {
-    authService;
     constructor(authService) {
         this.authService = authService;
     }
