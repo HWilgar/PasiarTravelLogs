@@ -1,4 +1,3 @@
-/// <reference types="multer" />
 import { TripsService } from './trips.service';
 import { Response } from 'express';
 import { CreateTripDto } from 'src/dto/create-trip.dto';
