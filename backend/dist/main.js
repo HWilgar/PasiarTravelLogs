@@ -9,7 +9,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api/v1');
     app.use((0, helmet_1.default)());
-    await app.listen(process.env.PORT || 3000);
+    await app.listen(3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
