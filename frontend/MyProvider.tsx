@@ -3,6 +3,7 @@ import MyContext from "./MyContext";
 
 interface User {
   name: string;
+  token: string;
 }
 
 interface Trip {
@@ -26,7 +27,8 @@ interface ProviderProps {
 const MyProvider: React.FC<ProviderProps> = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
-    name: ""
+    name: "",
+    token: "",
   });
   const [ trip, setTrip ] = useState({
     name: "",

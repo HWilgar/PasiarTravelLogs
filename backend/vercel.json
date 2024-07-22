@@ -2,18 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/main.js",
+      "src": "./index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/main.js",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      "dest": "index.js",
       "headers": { 
-        "Access-Control-Allow-Origin": "https://pasiar-travel-planner.vercel.app" 
-      }   
+          "Access-Control-Allow-Origin": "http://localhost:8080" 
+      }      
     }
   ]
 }

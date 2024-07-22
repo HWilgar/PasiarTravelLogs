@@ -38,9 +38,9 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${desId}`, { headers: { Authorization: `Bearer ${user}` } });
-      setDesNameField(data.data.name);
-      setMarkerPosition([data.data.location[0], data.data.location[1]]);
+      const { data : { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${desId}`, { headers: { Authorization: `Bearer ${user.token}` } });
+      setDesNameField(data.name);
+      setMarkerPosition([data.location[0], data.location[1]]);
     })();
   },[]);
   
@@ -69,9 +69,9 @@ const UpdateDestination = ({ handleClose, desId }: UpdateDesProps) => {
       }
 
     const newDestination = await axios.patch(
-      `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${desId}`,
+      `https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${desId}`,
       {name: desNameField, location: markerPosition},
-      { headers: { Authorization: `Bearer ${user}` } 
+      { headers: { Authorization: `Bearer ${user.token}` } 
     });
 
     setSuccess("Updated Successfully");

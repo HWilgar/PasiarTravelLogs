@@ -30,10 +30,10 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   
   useEffect(()=> {
     (async () => {
-      const  desList = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations`, { headers: {Authorization: `Bearer ${user}`}});
+      const  { data: { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/destinations/${trip._id}`, { headers: {Authorization: `Bearer ${user.token}`}});
 
-      setDestinations(desList.data);
-      setUpdatedDesList(desList.data);
+      setDestinations(data);
+      setUpdatedDesList(data);
       setDesToDelete([]);
     })();
   }, [])
@@ -64,12 +64,12 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   const UpdatedTrip = await axios.patch(
     `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
     {name: tripName, date: tripSched},
-    { headers: { Authorization: `Bearer ${user}` } });
+    { headers: { Authorization: `Bearer ${user.token}` } });
 
     if (updatedDesList !== destinations){
       try {
         for ( const destination of updatedDesList) {
-          const updateDesInfo = await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user}`}});
+          const updateDesInfo = await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user.token}`}});
         }
       } catch (error) {
         console.error('Error updating.', error);
@@ -79,7 +79,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
     if (destIdToDelete){
       try {
         for (const destinationId of destIdToDelete) {
-          const updateDesList = await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user}`}});
+          const updateDesList = await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user.token}`}});
         }
       } catch (error) {
         console.error('Error deleting destinations:', error);
@@ -191,7 +191,6 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
               </List>
             </Stack>
             <Stack flexDirection="row" gap="8px">
-              <Button variant="outlined" sx={{width: "100%"}} onClick={()=>handleClose(false)}>Cancel</Button>
               <Button variant="contained" sx={{width: "100%"}} type="submit">Update</Button>
             </Stack>
         </Stack>

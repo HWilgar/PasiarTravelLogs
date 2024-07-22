@@ -74,10 +74,10 @@ const Trip = () => {
 
   const fetchTrips = () => {
     (async () => {
-      const selectedTrip = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${tripId}`, { headers: { Authorization: `Bearer ${user}` } });
-      setTrip(selectedTrip.data);
+      const { data : { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
+      setTrip(data);
 
-      const dateObject = new Date(selectedTrip.data.date);
+      const dateObject = new Date(data.date);
       const formattedDate = format(dateObject, "MMMM dd, yyyy");
       setTripDate(formattedDate);
     })();
@@ -85,13 +85,12 @@ const Trip = () => {
 
   const fetchDestinations = () => {
     (async () => {
-      const destList = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${tripId}/destinations`, { headers: { Authorization: `Bearer ${user}` } });
-
-      const sortDestination = destList.data.sort((a,b) => (a.visited === b.visited? 0 : a.visited ? -1 : 1)).reverse();
+      const { data : { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/destinations/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
+      const sortDestination = data.sort((a,b) => (a.visited === b.visited? 0 : a.visited ? -1 : 1)).reverse();
       setDestinations(sortDestination);
 
-      if(destList.data[0] !== undefined){
-        setMarkerPosition([destList.data[0].location[0], destList.data[0].location[1]])
+      if(data[0] !== undefined){
+        setMarkerPosition([data[0].location[0], data[0].location[1]])
       }
     })();
   }
@@ -104,7 +103,7 @@ const Trip = () => {
   const handleDesStatus = async (des) => {
     const status = !des.visited;
 
-    await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/destinations/${des._id}`, {visited: status}, { headers:{ Authorization:`Bearer ${user}`}} );
+    await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${des._id}`, {visited: status}, { headers:{ Authorization:`Bearer ${user.token}`}} );
 
     fetchDestinations();
   }

@@ -52,25 +52,22 @@ const Collection = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get("https://pasiar-travel-logs-api.vercel.app/api/v1/trips", { headers: { Authorization: `Bearer ${user}` } });
+      const { data: { data } } = await axios.get("https://pasiar-travel-logs-api.vercel.app/api/v1/trips", { headers: { Authorization: `Bearer ${user.token}` } });
       
-      if (trips !== data.data){
-        setTrips(data.data);
+      if (trips !== data){
+        setTrips(data);
       }
     })();
-  },[openAddTripModal, openConfirmDel, trips]);
+  },[trips, openConfirmDel, openAddTripModal ]);
 
-  const handleConfirmDel = () => {
-    (async () => {
-      await axios.put(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${selectedTrip._id}/del`, { headers: { Authorization: `Bearer ${user}` } });
-      const filtertrip = trips.filter((trip) => trip._id !== selectedTrip._id);
-      setTrips(filtertrip);
-      handleDelClose();
-    })();
+  const handleConfirmDel = async() => {
+    await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${selectedTrip._id}/${selectedTrip.image?.filename.split("/")[1]}`, { headers: { Authorization: `Bearer ${user.token}` } });
+    const filtertrip = trips.filter((trip) => trip._id !== selectedTrip._id);
+    handleDelClose();
+    setTrips(filtertrip);
   };
 
   const handleImageFile = async(e: React.ChangeEvent<HTMLInputElement>, trip: React.SetStateAction<Trip>) => {
-
     if (e !== undefined){
       const file = e.target.files[0];
       setSelectedTrip(trip);
@@ -78,9 +75,9 @@ const Collection = () => {
       data.append("image", file);
 
       await axios.patch(
-        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}/upload`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
         data,
-        { headers: { Authorization: `Bearer ${user}` } });
+        { headers: { Authorization: `Bearer ${user.token}` } });
     }
   }
 

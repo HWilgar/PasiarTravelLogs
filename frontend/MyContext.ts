@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 
 interface User {
   name: string;
+  token: string;
 }
 
 interface Trip {
