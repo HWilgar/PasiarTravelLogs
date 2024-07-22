@@ -6,7 +6,7 @@ import db from './config/db.js';
 import userRoutes from './routes/user.routes.js';
 import tripRoutes from './routes/trip.routes.js';
 import destinationRoutes from './routes/destination.routes.js';
-import { pageNotFound, errorHandler } from './middleswares/error.middleware.js';
+import { pageNotFound, errorHandler } from './middlewares/error.middleware.js';
 
 dotenv.config();
 
@@ -17,23 +17,27 @@ const corsOptions = {
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-} 
+};
 
 db();
-app.use(
-  cors(corsOptions)
-);
-app.options("*",cors(corsOptions));
+
+// Middleware
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 
+// Routes
 app.use(`${baseURL}/users`, userRoutes);
 app.use(`${baseURL}/trips`, tripRoutes);
 app.use(`${baseURL}/destinations`, destinationRoutes);
 
+// Error handling
 app.use(pageNotFound);
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () =>
-  console.log(`Server is listening on port ${process.env.PORT}`)
-);
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
