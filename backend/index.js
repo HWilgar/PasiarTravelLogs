@@ -15,6 +15,7 @@ const baseURL = "/api/v1";
 const corsOptions = {
   origin: "https://pasiar-travel-planner.vercel.app",
   credentials: true,
+  preflightContinue: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
 } 
@@ -23,7 +24,7 @@ db();
 app.use(
   cors(corsOptions)
 );
-app.options("*",cors(corsOptions))
+app.options("*",cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 
