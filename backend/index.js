@@ -17,22 +17,20 @@ const corsOptions = {
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-};
+} 
 
 db();
-
-// Place CORS middleware before other middleware
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(
+  cors(corsOptions)
+);
+app.options("*",cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 
-// API routes
 app.use(`${baseURL}/users`, userRoutes);
 app.use(`${baseURL}/trips`, tripRoutes);
 app.use(`${baseURL}/destinations`, destinationRoutes);
 
-// Error handling middlewares
 app.use(pageNotFound);
 app.use(errorHandler);
 
