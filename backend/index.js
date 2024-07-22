@@ -6,7 +6,7 @@ import db from './config/db.js';
 import userRoutes from './routes/user.routes.js';
 import tripRoutes from './routes/trip.routes.js';
 import destinationRoutes from './routes/destination.routes.js';
-import { pageNotFound, errorHandler } from './middleswares/error.middleware.js';
+import { pageNotFound, errorHandler } from './middlewares/error.middleware.js';
 
 dotenv.config();
 
@@ -17,20 +17,22 @@ const corsOptions = {
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-} 
+};
 
 db();
-app.use(
-  cors(corsOptions)
-);
-app.options("*",cors(corsOptions));
+
+// Place CORS middleware before other middleware
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
 
+// API routes
 app.use(`${baseURL}/users`, userRoutes);
 app.use(`${baseURL}/trips`, tripRoutes);
 app.use(`${baseURL}/destinations`, destinationRoutes);
 
+// Error handling middlewares
 app.use(pageNotFound);
 app.use(errorHandler);
 
