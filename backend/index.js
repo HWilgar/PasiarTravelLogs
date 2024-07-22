@@ -6,7 +6,7 @@ import db from './config/db.js';
 import userRoutes from './routes/user.routes.js';
 import tripRoutes from './routes/trip.routes.js';
 import destinationRoutes from './routes/destination.routes.js';
-import { pageNotFound, errorHandler } from './middlewares/error.middleware.js';
+import { pageNotFound, errorHandler } from './middleswares/error.middleware.js';
 
 dotenv.config();
 
