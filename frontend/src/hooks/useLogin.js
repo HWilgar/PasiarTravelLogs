@@ -3,6 +3,8 @@ import MyContext from "../../MyContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const REQUEST_URL = process.env.REACT_APP_URL;
+
 const useLogin = () => {
   const { setIsLoggedIn, setUser } = useContext(MyContext);
   const [error, setError] = useState("");
@@ -10,7 +12,7 @@ const useLogin = () => {
 
   const handleLogin = async (userCredentials) => {
     try {
-      const { data: { data } } = await axios.post("https://pasiar-travel-logs-api.vercel.app/api/v1/users/login", {
+      const { data: { data } } = await axios.post(`${REQUEST_URL}/api/v1/users/login`, {
         email: userCredentials.email,
         password: userCredentials.password,
       });

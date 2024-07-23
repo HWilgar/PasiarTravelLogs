@@ -9,6 +9,7 @@ import { validateField } from './AddCollection';
 import CloseIcon from '@mui/icons-material/Close';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const REQUEST_URL = process.env.REACT_APP_URL;
 
 type AddDesProps = {
   handleClose: (v: boolean) => void;
@@ -58,7 +59,7 @@ const AddDestination = ({ handleClose, fetchTrips }: AddDesProps) => {
     }
 
     const newDestination = await axios.post(
-      `https://pasiar-travel-logs-api.vercel.app/api/v1/destinations`,
+      `${REQUEST_URL}/api/v1/destinations`,
       {name: desNameField, location: markerPosition, visited: false, tripId: trip._id},
       { headers: { Authorization: `Bearer ${user.token}` } });
   

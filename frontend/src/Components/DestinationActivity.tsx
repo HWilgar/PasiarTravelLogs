@@ -5,6 +5,8 @@ import MyContext from "../../MyContext";
 import axios from "axios";
 import { Destination } from "../propTypes/propTypes";
 
+const REQUEST_URL = process.env.REACT_APP_URL;
+
 const DestinationActivity = ({ destination }:{ destination: Destination } ) => {
   const { user, trip } = useContext(MyContext);
   const [activityField, setActivityField] = useState("");
@@ -22,14 +24,14 @@ const DestinationActivity = ({ destination }:{ destination: Destination } ) => {
 
     setActivityList(updatedActivity);
     ( async () => {
-      await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destination._id}`,{activities: updatedActivity}, { headers: { Authorization: `Bearer ${user.token}`}});
+      await axios.patch(`${REQUEST_URL}/api/v1/destinations/${destination._id}`,{activities: updatedActivity}, { headers: { Authorization: `Bearer ${user.token}`}});
     })();
   }
 
   useEffect(()=> {
     if(activityList.length){
       (async () => {
-        await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destination._id}`,{activities: activityList}, { headers:{ Authorization: `Bearer ${user.token}`}});
+        await axios.patch(`${REQUEST_URL}/api/v1/destinations/${destination._id}`,{activities: activityList}, { headers:{ Authorization: `Bearer ${user.token}`}});
       })();
     }
   }, [activityList]);

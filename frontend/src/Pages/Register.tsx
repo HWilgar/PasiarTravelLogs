@@ -6,6 +6,8 @@ import RegisterForm from "./../Pages/RegisterForm";
 import { validateInput } from "./../Components/validators/Validators";
 import { validateField } from "./../Pages/Login";
 
+const REQUEST_URL = process.env.REACT_APP_URL;
+
 const Register = ({ setForm }) => {
   const fields = [
     { label: 'Username', name: 'username', type: 'text'},
@@ -53,7 +55,7 @@ const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
   }
 
   try {
-    const registered = await axios.post("https://pasiar-travel-logs-api.vercel.app/api/v1/users/register", {name: userData.username, email: userData.email, password: userData.password});
+    const registered = await axios.post(`${REQUEST_URL}/api/v1/users/register`, {name: userData.username, email: userData.email, password: userData.password});
 
     if(registered){
       login(userData);

@@ -4,6 +4,8 @@ import MyContext from "../../MyContext";
 import axios from "axios";
 import { Destination } from "../propTypes/propTypes";
 
+const REQUEST_URL = process.env.REACT_APP_URL;
+
 const CollectionDesList = ({ tripId }: { tripId: string }) => {
   const { user } = useContext(MyContext);
   const [ destinationList, setDestinationList ] = useState<Destination[]>([]);
@@ -11,7 +13,7 @@ const CollectionDesList = ({ tripId }: { tripId: string }) => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/destinations/${tripId}`, {headers: { Authorization: `Bearer ${user.token}`}});
+      const { data } = await axios.get(`${REQUEST_URL}/api/v1/trips/destinations/${tripId}`, {headers: { Authorization: `Bearer ${user.token}`}});
       
       setDestinationList(data.data);
       const visitedDes = data.data.filter((destination) => destination.visited);

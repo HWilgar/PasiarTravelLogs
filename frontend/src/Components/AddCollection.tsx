@@ -20,6 +20,8 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
+const REQUEST_URL = process.env.REACT_APP_URL;
+
 export const validateField = (input: string, field: string, setError: (v: string)=> void) =>{
   if (validateInput(input)) {
     if (field === 'trip' && !validatePassword(input)) {
@@ -66,14 +68,14 @@ const AddCollection = ({ handleClose}: {handleClose: (v: boolean) => void} ) => 
       data.append("image", imageFile);
 
       await axios.post(
-        "https://pasiar-travel-logs-api.vercel.app/api/v1/trips",
+        `${REQUEST_URL}/api/v1/trips`,
         data,
         { headers: { Authorization: `Bearer ${user.token}` } });
 
       setImageFile({});
     } else {
       await axios.post(
-        "https://pasiar-travel-logs-api.vercel.app/api/v1/trips",
+        `${REQUEST_URL}/api/v1/trips`,
         {name: tripName, date: stringDate},
         { headers: { Authorization: `Bearer ${user.token}` } });
     }
