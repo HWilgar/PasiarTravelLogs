@@ -32,7 +32,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   
   useEffect(()=> {
     (async () => {
-      const  { data: { data } } = await axios.get(`${REQUEST_URL}/api/v1/trips/destinations/${trip._id}`, { headers: {Authorization: `Bearer ${user.token}`}});
+      const  { data: { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/destinations/${trip._id}`, { headers: {Authorization: `Bearer ${user.token}`}});
 
       setDestinations(data);
       setUpdatedDesList(data);
@@ -64,14 +64,14 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   }
 
   const UpdatedTrip = await axios.patch(
-    `${REQUEST_URL}/api/v1/trips/${trip._id}`,
+    `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
     {name: tripName, date: tripSched},
     { headers: { Authorization: `Bearer ${user.token}` } });
 
     if (updatedDesList !== destinations){
       try {
         for ( const destination of updatedDesList) {
-          const updateDesInfo = await axios.patch(`${REQUEST_URL}/api/v1/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user.token}`}});
+          const updateDesInfo = await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destination._id}`, {name: destination.name}, { headers: { Authorization: `Bearer ${user.token}`}});
         }
       } catch (error) {
         console.error('Error updating.', error);
@@ -81,7 +81,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
     if (destIdToDelete){
       try {
         for (const destinationId of destIdToDelete) {
-          const updateDesList = await axios.delete(`${REQUEST_URL}/api/v1/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user.token}`}});
+          const updateDesList = await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${destinationId}`, {headers: {Authorization: `Bearer ${user.token}`}});
         }
       } catch (error) {
         console.error('Error deleting destinations:', error);

@@ -12,7 +12,7 @@ const useLogin = () => {
 
   const handleLogin = async (userCredentials) => {
     try {
-      const { data: { data } } = await axios.post(`${REQUEST_URL}/api/v1/users/login`, {
+      const { data: { data } } = await axios.post(`https://pasiar-travel-logs-api.vercel.app/api/v1/users/login`, {
         email: userCredentials.email,
         password: userCredentials.password,
       });

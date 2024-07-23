@@ -68,14 +68,14 @@ const AddCollection = ({ handleClose}: {handleClose: (v: boolean) => void} ) => 
       data.append("image", imageFile);
 
       await axios.post(
-        `${REQUEST_URL}/api/v1/trips`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips`,
         data,
         { headers: { Authorization: `Bearer ${user.token}` } });
 
       setImageFile({});
     } else {
       await axios.post(
-        `${REQUEST_URL}/api/v1/trips`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips`,
         {name: tripName, date: stringDate},
         { headers: { Authorization: `Bearer ${user.token}` } });
     }

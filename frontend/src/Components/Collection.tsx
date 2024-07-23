@@ -54,7 +54,7 @@ const Collection = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: { data } } = await axios.get(`${REQUEST_URL}/api/v1/trips`, { headers: { Authorization: `Bearer ${user.token}` } });
+      const { data: { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips`, { headers: { Authorization: `Bearer ${user.token}` } });
       
       if (trips !== data){
         setTrips(data);
@@ -63,7 +63,7 @@ const Collection = () => {
   },[trips, openConfirmDel, openAddTripModal ]);
 
   const handleConfirmDel = async() => {
-    await axios.delete(`${REQUEST_URL}/api/v1/trips/${selectedTrip._id}/${selectedTrip.image?.filename.split("/")[1]}`, { headers: { Authorization: `Bearer ${user.token}` } });
+    await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${selectedTrip._id}/${selectedTrip.image?.filename.split("/")[1]}`, { headers: { Authorization: `Bearer ${user.token}` } });
     const filtertrip = trips.filter((trip) => trip._id !== selectedTrip._id);
     handleDelClose();
     setTrips(filtertrip);
@@ -77,7 +77,7 @@ const Collection = () => {
       data.append("image", file);
 
       await axios.patch(
-        `${REQUEST_URL}/api/v1/trips/${trip._id}`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
         data,
         { headers: { Authorization: `Bearer ${user.token}` } });
     }

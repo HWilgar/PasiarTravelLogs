@@ -75,7 +75,7 @@ const Trip = () => {
 
   const fetchTrips = () => {
     (async () => {
-      const { data : { data } } = await axios.get(`${REQUEST_URL}/api/v1/trips/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
+      const { data : { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
       setTrip(data);
 
       const dateObject = new Date(data.date);
@@ -86,7 +86,7 @@ const Trip = () => {
 
   const fetchDestinations = () => {
     (async () => {
-      const { data : { data } } = await axios.get(`${REQUEST_URL}/api/v1/trips/destinations/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
+      const { data : { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/destinations/${tripId}`, { headers: { Authorization: `Bearer ${user.token}` } });
       const sortDestination = data.sort((a,b) => (a.visited === b.visited? 0 : a.visited ? -1 : 1)).reverse();
       setDestinations(sortDestination);
 
@@ -104,7 +104,7 @@ const Trip = () => {
   const handleDesStatus = async (des) => {
     const status = !des.visited;
 
-    await axios.patch(`${REQUEST_URL}/api/v1/destinations/${des._id}`, {visited: status}, { headers:{ Authorization:`Bearer ${user.token}`}} );
+    await axios.patch(`https://pasiar-travel-logs-api.vercel.app/api/v1/destinations/${des._id}`, {visited: status}, { headers:{ Authorization:`Bearer ${user.token}`}} );
 
     fetchDestinations();
   }
