@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
-import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, Stack, Typography, styled } from "@mui/material";
+import { useeNavigate, useNavigate } from "react-router-dom";
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, Tooltip, Modal, Stack, Typography, styled } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import LaunchIcon from '@mui/icons-material/Launch';
 import AddCollection from "./AddCollection";
@@ -10,8 +11,9 @@ import { Link } from "react-router-dom";
 import CollectionDesList from "./CollectionDesList";
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { Trip } from "../propTypes/propTypes";
-
-const REQUEST_URL = process.env.REACT_APP_URL;
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import Zoom from '@mui/material/Zoom';
+import useFetch from './../hooks/useFetch';
 
 const style = {
   position: 'absolute',
@@ -39,7 +41,7 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const Collection = () => {
-  const { user } = useContext(MyContext);
+  const { user, setIsLoggedIn, setUser, isLoggedIn } = useContext(MyContext);
   const [ selectedTrip, setSelectedTrip ] = useState<Trip>({});
   const [openAddTripModal, setOpenManageModal] = useState(false);
   const [ openConfirmDel, setOpenConfirmDel ] = useState(false);
@@ -48,25 +50,23 @@ const Collection = () => {
     setSelectedTrip(trip);
     setOpenConfirmDel(true);
   };
-
+  const navigate = useNavigate();
+  const { data, refetch } = useFetch("https://pasiar-travel-logs-api.vercel.app/api/v1/trips");
   const handleDelClose = () => setOpenConfirmDel(false);
   const [ trips, setTrips ] = useState<Trip[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const { data: { data } } = await axios.get(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips`, { headers: { Authorization: `Bearer ${user.token}` } });
-      
-      if (trips !== data){
-        setTrips(data);
-      }
-    })();
-  },[trips, openConfirmDel, openAddTripModal ]);
+    if (data){
+      setTrips(data);
+    }
+  }, [data]);
 
   const handleConfirmDel = async() => {
     await axios.delete(`https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${selectedTrip._id}/${selectedTrip.image?.filename.split("/")[1]}`, { headers: { Authorization: `Bearer ${user.token}` } });
     const filtertrip = trips.filter((trip) => trip._id !== selectedTrip._id);
     handleDelClose();
     setTrips(filtertrip);
+    refetch();
   };
 
   const handleImageFile = async(e: React.ChangeEvent<HTMLInputElement>, trip: React.SetStateAction<Trip>) => {
@@ -82,6 +82,13 @@ const Collection = () => {
         { headers: { Authorization: `Bearer ${user.token}` } });
     }
   }
+
+const handleLogout = () => {
+  setIsLoggedIn(false);
+  localStorage.removeItem("pasiar_user");
+  setUser({});
+  navigate("/");
+}
 
 return (
   <Container>
@@ -100,7 +107,18 @@ return (
           padding: "20px 30px",
           flexWrap: "wrap"
         }}>
-        <Typography variant="h4" sx={{fontWeight: 600, color: "#202020"}}> DASHBOARD </Typography>
+        <Stack sx={{ flexDirection: "row", justifyContent: "center", height: "auto"}}>
+          <Typography variant="h4" sx={{fontWeight: 600, color: "#202020"}}> 
+            DASHBOARD 
+          </Typography>
+          <Button
+              sx={{ padding: "0 7px", minWidth: 0 }} 
+              onClick={handleLogout} 
+            >
+              <MeetingRoomIcon/>
+              Logout
+          </Button>
+        </Stack>
         <Button variant="contained" sx={{backgroundColor: "#FF9448"}} onClick={()=>handleTripModal(true)}>+ Create Trip</Button>
       </Stack>
       
@@ -136,7 +154,9 @@ return (
                   </Stack>
                   <Stack sx={{gap: "5px"}}>
                     <Button sx={{minWidth: 0, padding: 0 }} onClick={()=>handleClickDelOpen(trip)}>
-                      <DeleteForeverIcon sx={{color:"#6E7C7A"}}/>
+                      <Tooltip title= "Delete" placement="left" TransitionComponent={Zoom}>
+                        <DeleteForeverIcon sx={{color:"#6E7C7A"}}/>
+                      </Tooltip>
                     </Button>
                     <Button
                       component="label"
@@ -144,7 +164,9 @@ return (
                       tabIndex={-1}
                       sx={{minWidth: 0, padding: 0 }}
                     >
-                      <InsertPhotoOutlinedIcon sx={{color:"#6E7C7A"}}/>
+                      <Tooltip title= "Change Cover" placement= "left" TransitionComponent={Zoom}>
+                        <InsertPhotoOutlinedIcon sx={{color:"#6E7C7A"}}/>
+                      </Tooltip>
                       <VisuallyHiddenInput type="file"
                       onChange={(e)=> handleImageFile(e, trip)}/>
                     </Button>
@@ -181,7 +203,9 @@ return (
     >
       <Box sx={style}>
           <AddCollection
-          handleClose={setOpenManageModal}/>
+          handleClose={setOpenManageModal}
+          refetch={refetch}
+          />
       </Box>
     </Modal>
 

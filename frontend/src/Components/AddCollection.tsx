@@ -20,8 +20,6 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-const REQUEST_URL = process.env.REACT_APP_URL;
-
 export const validateField = (input: string, field: string, setError: (v: string)=> void) =>{
   if (validateInput(input)) {
     if (field === 'trip' && !validatePassword(input)) {
@@ -34,7 +32,12 @@ export const validateField = (input: string, field: string, setError: (v: string
   }
 };
 
-const AddCollection = ({ handleClose}: {handleClose: (v: boolean) => void} ) => {
+type AddCollectionProps = {
+  handleClose: (v: boolean) => void;
+  refetch: () => void;
+}
+
+const AddCollection = ({ handleClose, refetch}: AddCollectionProps ) => {
   const { user } = useContext(MyContext);
   const [ tripName, setTripName ] = useState("");
   const [ tripSched, setTripSched ] = useState<Date | null>(new Date());
@@ -81,6 +84,7 @@ const AddCollection = ({ handleClose}: {handleClose: (v: boolean) => void} ) => 
     }
     setIsSaving(false);
     setHasImage(false);
+    refetch();
     handleClose(false);
   }
 

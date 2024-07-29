@@ -25,11 +25,14 @@ interface ProviderProps {
 }
 
 const MyProvider: React.FC<ProviderProps> = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<User>({
-    name: "",
-    token: "",
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
+    localStorage.getItem("pasiar_user") ? true : false
+  );
+  
+  const [user, setUser] = useState<User>(
+    localStorage.getItem("pasiar_user") ? JSON.parse(localStorage.getItem("pasiar_user")) : {}
+  );
+
   const [ trip, setTrip ] = useState({
     name: "",
     _id: "",

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Modal, Accordion, AccordionDetails, AccordionSummary, Box, Button, Checkbox, Container, List, ListItem, Stack, TextField, Typography } from "@mui/material"
+import { Modal, Accordion, AccordionDetails, AccordionSummary, Box, Button, Checkbox, Container, List, ListItem, Stack, TextField, Typography, useMediaQuery, Tooltip } from "@mui/material";
+import { useTheme } from "@mui/material";
 import {APIProvider, AdvancedMarker, ControlPosition, Map, Marker, Pin} from '@vis.gl/react-google-maps';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,9 +17,9 @@ import DestinationActivity from "../Components/DestinationActivity";
 import { format } from "date-fns";
 import { convertFieldResponseIntoMuiTextFieldProps } from "@mui/x-date-pickers/internals";
 import BeenhereIcon from '@mui/icons-material/Beenhere';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const REQUEST_URL = process.env.REACT_APP_URL;
 
 const containerStyle = {
   width: '400px',
@@ -35,7 +36,6 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '400px',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -44,11 +44,14 @@ const style = {
 };
 
 const Trip = () => {
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
   const [markerPosition, setMarkerPosition] = useState<number[]>([0,0]);
-
   const [ destinations, setDestinations ] = useState([]);
   const [ selectedDestination, setSelectedDestination ] = useState({});
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const [openAddDesModal, setOpenAddDesModal] = useState(false);
   const handleOpenAddDesModal = () => setOpenAddDesModal(true);
@@ -109,6 +112,10 @@ const Trip = () => {
     fetchDestinations();
   }
 
+  const handleBackButton = () => {
+    navigate("/dashboard");
+  }
+
   return (
     <Container>
       <Stack 
@@ -123,36 +130,45 @@ const Trip = () => {
           sx={{
             flexDirection: "row",
             alignItems: "start",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            marginBottom: "5px"
           }}
         >
-          <Stack
-            sx={{
-              alignItems: "start",
-            }}
-          >
-            <Typography 
-              variant="h5"
+          <Stack flexDirection="row">
+            <Button onClick={handleBackButton} sx={{ padding: "0 3px", minWidth: 0, marginRight: "5px" }}>
+              <Tooltip title="Back" placement="top">
+                <ArrowBackIosNewIcon />
+              </Tooltip>  
+            </Button>
+            <Stack
               sx={{
-                fontWeight: 600,
+                alignItems: "start",
               }}
             >
-              {trip.name}
-            </Typography>
-            <Typography>{tripDate}</Typography>
+              <Typography 
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                }}
+              >
+                {trip.name}
+              </Typography>
+              <Typography>{tripDate}</Typography>
+            </Stack>
           </Stack>
+
           <Button onClick={handleOpenManageModal}><EditIcon/> Manage Trip</Button>
         </Stack>
         <Stack
           sx={{
-            flexDirection: "row-reverse",
+            flexDirection: isMdUp ? 'row-reverse' : 'column',
             gap: "15px"
           }}>
           { markerPosition[0] !== 0 &&
-          <Box sx={{width: "100%"}}>
+          <Box sx={{width: "100%", height: '400px'}}>
             <APIProvider apiKey={API_KEY}>
                 <Map
-                style={{minWidth: '400px', minHeight: '400px'}}
+                style={{width: '100%', minHeight: '400px'}}
                 defaultCenter={{lat: markerPosition[0], lng: markerPosition[1]}}
                 defaultZoom={9}
                 gestureHandling={'greedy'}
@@ -190,15 +206,17 @@ const Trip = () => {
           }
           <Stack
             sx={{
-              marginLeft: "15px",
+              marginLeft: isMdUp ? "15px" : "0px",
               marginTop: "10px",
               width: "100%",
-              textAlign: "left"
+              textAlign: "left",
+              paddingX: "10px",
+              justifyContent: isMdUp ? "start" : "center",
             }}  
           >
-            <Stack flexDirection="row" justifyContent="space-between" alignItems="center">
+            <Stack flexDirection="row" justifyContent="space-between" alignItems="center" sx={{ width: isMdUp ? "100%" : "95%" }}>
               <Typography variant="h6">DESTINATION:</Typography>
-              <Button variant="contained" onClick={handleOpenAddDesModal}> Add Destination </Button>
+              <Button variant="contained" onClick={handleOpenAddDesModal}> Add {isSmUp? "Destination" : ""} </Button>
             </Stack>
             {
               destinations.map((destination) => (
@@ -213,7 +231,7 @@ const Trip = () => {
                   <Accordion
                     sx={{
                       marginTop: "10px",
-                      width: "100%",
+                      width: isMdUp ? "100%" : "95%",
                       boxShadow: '0 4px 8px 0 rgba(14, 13, 25, 0.2)',
                     }}
                   >
@@ -267,7 +285,7 @@ const Trip = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, width: isMdUp ? "400px" : "80%" }}>
             <AddDestination
               handleClose={setOpenAddDesModal}
               fetchTrips={fetchTrips}
@@ -280,7 +298,7 @@ const Trip = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, width: isMdUp ? "400px" : "80%" }}>
             <UpdateDestination
               handleClose={setOpenUpdateLocModal}
               desId={selectedDestination}
@@ -293,7 +311,7 @@ const Trip = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, width: isMdUp ? "400px" : "70%" }}>
             <ManageCollection
               handleClose={setOpenManageModal}
               updateDestination={fetchDestinations}

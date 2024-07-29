@@ -9,7 +9,6 @@ import { validateField } from './AddCollection';
 import CloseIcon from '@mui/icons-material/Close';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const REQUEST_URL = process.env.REACT_APP_URL;
 
 type AddDesProps = {
   handleClose: (v: boolean) => void;
@@ -99,8 +98,8 @@ return (
 
   <APIProvider apiKey={API_KEY}>
     <Map
-      defaultZoom={12}
-      defaultCenter={{lat: 16.4124, lng: 120.5930}}
+      defaultZoom={5}
+      defaultCenter={{lat: 12.8797, lng: 121.7740}}
       mapId='44308dee98f455be'
       gestureHandling={'greedy'}
       onClick={handleSelectPlace}

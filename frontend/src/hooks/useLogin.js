@@ -3,8 +3,6 @@ import MyContext from "../../MyContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const REQUEST_URL = process.env.REACT_APP_URL;
-
 const useLogin = () => {
   const { setIsLoggedIn, setUser } = useContext(MyContext);
   const [error, setError] = useState("");
@@ -17,12 +15,9 @@ const useLogin = () => {
         password: userCredentials.password,
       });
 
-      setIsLoggedIn(true);
-      setUser({
-        token: data.token,
-        name: data.name,
-      });
-      
+      localStorage.setItem("pasiar_user", JSON.stringify(data));
+      setUser(data);
+      setIsLoggedIn(true);   
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
