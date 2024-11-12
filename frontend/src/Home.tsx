@@ -64,7 +64,6 @@ const Home = () => {
           padding: '20px',
           borderRadius: '10px',
           gap: '10px',
-          width: '40%',
           margin: "auto",
           backgroundColor: "#fff"
         }}

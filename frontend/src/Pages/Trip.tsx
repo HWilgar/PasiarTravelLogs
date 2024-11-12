@@ -165,7 +165,7 @@ const Trip = () => {
             gap: "15px"
           }}>
           { markerPosition[0] !== 0 &&
-          <Box sx={{width: "100%", height: '400px'}}>
+          <Box sx={{width: "100%", height: '400px', minWidth: "350px"}}>
             <APIProvider apiKey={API_KEY}>
                 <Map
                 style={{width: '100%', minHeight: '400px'}}

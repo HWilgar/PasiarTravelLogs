@@ -139,7 +139,7 @@ return (
                   borderRadius: "10px",
                   backgroundImage: "linear-gradient(340deg, rgba(137, 49, 3, 0.52), rgba(20, 20, 20, 0.75), rgba(10, 10, 10, 1)), var(--img)",
                   color: "#cfd8dc",
-                  marginTop: "20px",
+                  margin: "20px",
                   alignItems: "center",
                   "--img": `url(${trip.image !== undefined ? trip.image.path: 'https://images.pexels.com/photos/1816602/pexels-photo-1816602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}), linear-gradient(#e66465, #9198e5)`,
                   backgroundSize: "cover",
