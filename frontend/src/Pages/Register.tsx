@@ -76,7 +76,7 @@ const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
           padding: '20px',
           borderRadius: '10px',
           gap: '10px',
-          width: '40%',
+          width: '100%',
           margin: "auto",
           backgroundColor: "#fff"
         }}

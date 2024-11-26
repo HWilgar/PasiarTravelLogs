@@ -69,17 +69,22 @@ const Collection = () => {
     refetch();
   };
 
-  const handleImageFile = async(e: React.ChangeEvent<HTMLInputElement>, trip: React.SetStateAction<Trip>) => {
+const handleImageFile = async(e: React.ChangeEvent<HTMLInputElement>, trip: React.SetStateAction<Trip>) => {
     if (e !== undefined){
       const file = e.target.files[0];
-      setSelectedTrip(trip);
       const data = new FormData();
       data.append("image", file);
 
-      await axios.patch(
-        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
+      const response = await axios.patch(
+        `http://localhost:8080/api/v1/trips/${trip._id}`,
         data,
         { headers: { Authorization: `Bearer ${user.token}` } });
+
+        const updatedTrip = response.data;
+        setSelectedTrip(updatedTrip.data);
+        setTrips((prevTrips) =>
+          prevTrips.map((t) => (t._id === updatedTrip.data._id ? updatedTrip.data : t))
+        );
     }
   }
 
