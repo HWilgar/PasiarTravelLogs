@@ -76,7 +76,7 @@ const handleImageFile = async(e: React.ChangeEvent<HTMLInputElement>, trip: Reac
       data.append("image", file);
 
       const response = await axios.patch(
-        `http://localhost:8080/api/v1/trips/${trip._id}`,
+        `https://pasiar-travel-logs-api.vercel.app/api/v1/trips/${trip._id}`,
         data,
         { headers: { Authorization: `Bearer ${user.token}` } });
 
