@@ -23,7 +23,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
   const [ tripName, setTripName] = useState(trip.name);
   const [ destinations, setDestinations] = useState([]);
   const [ destIdToDelete, setDesToDelete ] = useState([]);
-  const [ tripSched, setTripSched] = useState<Date | null>(new Date(date));
+  const [ tripSched, setTripSched] = useState<Date | null>(new Date());
   const [ updatedDesList, setUpdatedDesList ] = useState([]);
   const [ error, setError ]  = useState("");
   const [ isFormValid, setIsFormValid ] = useState(true);
@@ -36,6 +36,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
 
       setDestinations(data);
       setUpdatedDesList(data);
+      setTripSched(new Date(date));
       setDesToDelete([]);
     })();
   }, [])
