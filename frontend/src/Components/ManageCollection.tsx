@@ -36,7 +36,7 @@ const ManageCollection = ({ handleClose, updateDestination, date, fetchTrips }: 
 
       setDestinations(data);
       setUpdatedDesList(data);
-      setTripSched(new Date(date));
+      setTripSched(new Date(data.date));
       setDesToDelete([]);
     })();
   }, [])
